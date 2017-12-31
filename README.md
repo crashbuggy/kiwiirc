@@ -1,12 +1,13 @@
 # kiwiirc
-kiwiirc
+
+Unofficial kiwiirc image.
 
 If you run something like
 
 ```
 docker run --rm --mount source=kiwiirc-data,target=/kiwiirc-data crashbuggy/kiwiirc false
 ```
-You'll end up with a volume called wikiirc-data with 2 files in it
+You'll end up with a volume called kiwiirc-data with 2 files in it
 
 config.conf
 config.json

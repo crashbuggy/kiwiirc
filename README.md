@@ -14,13 +14,14 @@ config.json
 If you're not sure where the volume is, run
 
 ```
-docker inspect kiwiirc-data`
+docker inspect kiwiirc-data
 ```
 
 You'll find it at the Mountpoint, mine is
 
-``"Mountpoint": "/var/lib/docker/volumes/kiwiirc-data/_data",`
-
+```
+"Mountpoint": "/var/lib/docker/volumes/kiwiirc-data/_data",
+```
 
 You can edit those as per the documentation found in https://github.com/kiwiirc/kiwiirc and
 https://github.com/kiwiirc/webircgateway

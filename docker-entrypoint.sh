@@ -1,19 +1,23 @@
 #!/bin/sh
 
-if [ -f /kiwiirc-data/config.conf ]; then
-	ln -sf /kiwiirc-data/config.conf
-elif [ -d /kiwiirc-data/ ]; then
-	cp config.conf.example /kiwiirc-data/config.conf
-	ln -sf /kiwiirc-data/config.conf
+# WORKDIR will only get set to /kiwiirc if WORKDIR isn't already set
+: ${WORKDIR:=/kiwiirc}
+
+if [ -f ${WORKDIR}-data/config.conf ]; then
+	ln -sf ${WORKDIR}-data/config.conf
+elif [ -d ${WORKDIR}-data/ ]; then
+	cp config.conf.example ${WORKDIR}-data/config.conf
+	ln -sf ${WORKDIR}-data/config.conf
 else
+	cd $WORKDIR
 	cp config.conf.sample config.conf
 fi
 
-if [ -f /kiwiirc-data/config.json ]; then
-	(cd www/static; ln -sf /kiwiirc-data/config.json)
-elif [ -d /kiwiirc-data ]; then
-	cp www/static/config.json /kiwiirc-data
-	(cd www/static; ln -sf /kiwiirc-data/config.json)
+if [ -f ${WORKDIR}-data/config.json ]; then
+	(cd www/static; ln -sf ${WORKDIR}-data/config.json)
+elif [ -d ${WORKDIR}-data ]; then
+	cp www/static/config.json ${WORKDIR}-data
+	(cd www/static; ln -sf ${WORKDIR}-data/config.json)
 fi
 
 exec "$@"

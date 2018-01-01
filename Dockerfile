@@ -19,7 +19,7 @@ WORKDIR ${WORKDIR}
 
 COPY --from=builder ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
 COPY --from=builder ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
-COPY ./config.conf.example ${WORKDIR}/config.conf.example
+COPY --from=builder ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
 
 EXPOSE 80
 

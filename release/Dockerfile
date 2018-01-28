@@ -3,7 +3,7 @@ FROM alpine as builder
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-ENV KIWIIRC_VERSION 17.12.31.1
+ENV KIWIIRC_VERSION 18.01.06.1
 ENV KIWIIRC_ZIP kiwiirc_${KIWIIRC_VERSION}_linux_amd64.zip
 
 RUN apk add --update openssl
@@ -12,7 +12,6 @@ RUN	unzip ${KIWIIRC_ZIP}
 RUN rm ${KIWIIRC_ZIP}
 RUN mv kiwiirc_linux_amd64/* .
 RUN rmdir kiwiirc_linux_amd64
-
 
 FROM alpine
 ENV WORKDIR /kiwiirc

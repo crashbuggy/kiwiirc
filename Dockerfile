@@ -1,5 +1,7 @@
 FROM alpine as builder
 
+ENV GITASOF 2018-05-16
+
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 

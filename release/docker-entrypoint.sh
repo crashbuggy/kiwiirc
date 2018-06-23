@@ -9,7 +9,6 @@ elif [ -d ${WORKDIR}-data/ ]; then
 	cp config.conf.example ${WORKDIR}-data/config.conf
 	ln -sf ${WORKDIR}-data/config.conf
 else
-	cd $WORKDIR
 	cp config.conf.sample config.conf
 fi
 

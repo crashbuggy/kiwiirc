@@ -1,6 +1,6 @@
-FROM alpine as builder
+FROM alpine as buildstage
 
-ENV GITASOF 2018-06-22
+ENV GITASOF 2018-06-25
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
@@ -14,7 +14,7 @@ RUN	cd /kiwiirc/kiwiirc && npm run build
 RUN cd /kiwiirc && git clone --depth=1 https://github.com/kiwiirc/webircgateway
 RUN cd /kiwiirc/webircgateway && go get github.com/kiwiirc/webircgateway && go build -o webircgateway main.go
 
-FROM alpine
+FROM alpine as runstage
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}

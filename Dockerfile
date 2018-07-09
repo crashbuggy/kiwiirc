@@ -19,9 +19,9 @@ FROM alpine as runstage
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-COPY --from=builder ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
-COPY --from=builder ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
-COPY --from=builder ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
+COPY --from=buildstage ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
+COPY --from=buildstage ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
+COPY --from=buildstage ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
 
 EXPOSE 80
 

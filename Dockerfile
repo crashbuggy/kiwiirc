@@ -8,11 +8,13 @@ WORKDIR ${WORKDIR}
 RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl
 RUN git clone --depth=1 https://github.com/kiwiirc/kiwiirc.git
 
-RUN cd /kiwiirc/kiwiirc && 	yarn install
-RUN	cd /kiwiirc/kiwiirc && npm run build
+RUN cd /kiwiirc/kiwiirc && yarn install
+RUN cd /kiwiirc/kiwiirc && npm run build
 
 RUN cd /kiwiirc && git clone --depth=1 https://github.com/kiwiirc/webircgateway
-RUN cd /kiwiirc/webircgateway && go get github.com/kiwiirc/webircgateway && go build -o webircgateway main.go
+RUN cd /kiwiirc/webircgateway && \
+        go get github.com/kiwiirc/webircgateway && \
+        go build -o webircgateway main.go
 
 FROM alpine as runstage
 

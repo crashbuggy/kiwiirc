@@ -1,5 +1,7 @@
 FROM alpine as builder
 
+ENV BUMP 2018-08-22
+
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 

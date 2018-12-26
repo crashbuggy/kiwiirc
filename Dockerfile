@@ -6,8 +6,8 @@ ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
 RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl
-RUN git clone --depth=1 https://github.com/kiwiirc/kiwiirc.git
-
+#RUN git clone --depth=1 https://github.com/kiwiirc/kiwiirc.git
+RUN git clone --depth 1 https://github.com/ItsOnlyBinary/kiwiirc
 RUN cd /kiwiirc/kiwiirc && yarn install
 RUN cd /kiwiirc/kiwiirc && npm run build
 

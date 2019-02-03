@@ -1,17 +1,17 @@
 FROM alpine as buildstage
 
-ENV GITASOF 19.01.27.1
+ENV GITASOF 19.02.03.1
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
 RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl
 #RUN git clone --depth=1 https://github.com/kiwiirc/kiwiirc.git
-RUN git clone --depth 1 https://github.com/ItsOnlyBinary/kiwiirc
+RUN git clone --depth 1 --single-branch https://github.com/kiwiirc/kiwiirc
 RUN cd /kiwiirc/kiwiirc && yarn install
 RUN cd /kiwiirc/kiwiirc && npm run build
 
-RUN cd /kiwiirc && git clone --depth=1 https://github.com/kiwiirc/webircgateway
+RUN cd /kiwiirc && git clone --depth=1 --single-branch https://github.com/kiwiirc/webircgateway
 RUN cd /kiwiirc/webircgateway && \
         go get github.com/kiwiirc/webircgateway && \
         go build -o webircgateway main.go

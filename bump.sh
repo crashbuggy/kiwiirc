@@ -9,7 +9,7 @@ DATE=`date +%y.%m.%d.1`
 
 sed -i "s/ENV GITASOF .*/ENV GITASOF $DATE/" Dockerfile 
 git stage Dockerfile
-git commit -m bump
+git commit -m "bump $DATE"
 git tag gitasof-"$DATE"
 git push
 git push origin gitasof-"$DATE"

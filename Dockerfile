@@ -5,7 +5,7 @@ ENV GITASOF 19.03.14.2
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl su-exec
+RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl
 RUN git clone --depth=1 --single-branch https://github.com/kiwiirc/kiwiirc
 RUN cd /kiwiirc/kiwiirc && yarn install
 RUN cd /kiwiirc/kiwiirc && npm run build
@@ -16,6 +16,8 @@ RUN cd /kiwiirc/webircgateway && \
         go build -o webircgateway main.go
 
 FROM alpine as runstage
+
+RUN apk add --no-cache su-exec
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}

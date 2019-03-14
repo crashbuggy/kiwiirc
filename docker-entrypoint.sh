@@ -16,7 +16,7 @@ fi
 if [ -f /etc/kiwiirc/config.conf ]; then
 	CONFIG_CONF=/etc/kiwiirc/config.conf
 else
-	CONFIG_CONF="/kiwiirc-data/config.json"
+	CONFIG_CONF="/kiwiirc-data/config.conf"
 	if [ ! -f "$CONFIG_CONF" ]; then
 		cp /kiwiirc/config.conf.example "$CONFIG_CONF"
 	fi

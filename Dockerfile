@@ -26,7 +26,9 @@ COPY --from=buildstage ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
 COPY --from=buildstage ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
 COPY --from=buildstage ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
 
-EXPOSE 80
+RUN sed -i 's/^port = 80\b/port = 8080/' ${WORKDIR}/config.conf.example
+
+EXPOSE 8080
 
 VOLUME /kiwiirc-data
 

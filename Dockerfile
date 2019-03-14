@@ -5,8 +5,8 @@ ENV GITASOF 19.03.14.1
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl
-RUN git clone --depth 1 --single-branch https://github.com/kiwiirc/kiwiirc
+RUN apk add --update git yarn nodejs-npm g++ make go pkgconfig bash curl su-exec
+RUN git clone --depth=1 --single-branch https://github.com/kiwiirc/kiwiirc
 RUN cd /kiwiirc/kiwiirc && yarn install
 RUN cd /kiwiirc/kiwiirc && npm run build
 
@@ -31,4 +31,4 @@ VOLUME /kiwiirc-data
 COPY docker-entrypoint.sh ${WORKDIR}/docker-entrypoint.sh
 
 ENTRYPOINT ["/kiwiirc/docker-entrypoint.sh"]
-CMD ["/kiwiirc/kiwiirc"]
+CMD ["su-exec", "guest", "/kiwiirc/kiwiirc"]

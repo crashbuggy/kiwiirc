@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  kiwiirc:
+    image: crashbuggy/kiwiirc:latest-git
+    restart: always
+    expose:
+      - 8080
+    volumes:
+      - ./etc/99-custom.sh:/docker-entrypoint.d/99-custom.sh
+      - ./etc/config.conf:/etc/kiwiirc/config.conf
+      - ./etc/config.json:/etc/kiwiirc/config.json
+

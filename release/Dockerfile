@@ -15,17 +15,26 @@ RUN rm ${KIWIIRC_ZIP}
 RUN mv kiwiirc_linux_amd64/* .
 RUN rmdir kiwiirc_linux_amd64
 
-FROM alpine
+
+
+FROM alpine as runstage
+
+RUN apk add --no-cache su-exec
+
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-COPY --from=builder ${WORKDIR} ${WORKDIR}
+COPY --from=buildstage ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
+COPY --from=buildstage ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
+COPY --from=buildstage ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
 
-EXPOSE 80
+RUN sed -i 's/^port = 80\b/port = 8080/' ${WORKDIR}/config.conf.example
+
+EXPOSE 8080
 
 VOLUME /kiwiirc-data
 
-COPY docker-entrypoint.sh /kiwiirc/docker-entrypoint.sh
+COPY docker-entrypoint.sh ${WORKDIR}/docker-entrypoint.sh
 
 ENTRYPOINT ["/kiwiirc/docker-entrypoint.sh"]
-CMD ["/kiwiirc/kiwiirc"]
+CMD ["su-exec", "guest", "/kiwiirc/kiwiirc"]

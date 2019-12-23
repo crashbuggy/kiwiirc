@@ -24,9 +24,7 @@ RUN apk add --no-cache su-exec
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
 
-COPY --from=buildstage ${WORKDIR}/kiwiirc/dist ${WORKDIR}/www
-COPY --from=buildstage ${WORKDIR}/webircgateway/webircgateway ${WORKDIR}/kiwiirc
-COPY --from=buildstage ${WORKDIR}/webircgateway/config.conf.example ${WORKDIR}/
+COPY --from=buildstage ${WORKDIR} ${WORKDIR}
 
 RUN sed -i 's/^port = 80\b/port = 8080/' ${WORKDIR}/config.conf.example
 

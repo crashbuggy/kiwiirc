@@ -1,6 +1,6 @@
 FROM alpine as buildstage
 
-ENV GITASOF 20.02.09.1
+ENV GITASOF 20.02.16.1
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}

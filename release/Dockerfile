@@ -1,6 +1,6 @@
 FROM alpine as buildstage
 
-ENV BUMP 21.05.23.1
+ENV BUMP 21.05.30.1
 
 ENV WORKDIR /kiwiirc
 WORKDIR ${WORKDIR}
